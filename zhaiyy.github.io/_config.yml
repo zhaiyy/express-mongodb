@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Zhai Yingying's Blog
 subtitle:
 description:
-author: John Doe
+author: Zhai Yingying
 language:
 timezone:
 
@@ -63,9 +63,21 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: TKL
+
+# Archives
+## 2: Enable pagination
+## 1: Disable pagination
+## 0: Fully Disable
+archive: 1
+category: 1
+tag: 1
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+   type: git
+
+   repo: git@github.com:zhaiyy/zhaiyy.github.io.git
+
+   branch: master
