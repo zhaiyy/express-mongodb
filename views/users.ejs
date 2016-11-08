@@ -1,0 +1,77 @@
+<style rel="stylesheet">
+    .content{
+        text-align: center;
+        padding: 100px 0px;
+    }
+</style>
+<%- include header %>
+
+<nav class="">
+    <a href="/">
+        <img class="logo-nav" src="/images/logo.png" >
+    </a>
+</nav>
+<div class="content">
+    <div class="uk-grid">
+        <div class="uk-width-1-1">
+            <h1 style="margin-bottom:40px ">sign up</h1>
+        </div>
+        <form class="uk-form uk-width-1-2" style="margin: 0 auto">
+        <fieldset>
+            <div class="uk-form-row uk-grid">
+                <label class="uk-width-1-3">user name</label>
+                <input type="text" class="mobile uk-width-1-3" placeholder="输入手机号">
+            </div>
+            <div class="uk-form-row uk-grid">
+                <label class="uk-width-1-3">nickname</label>
+                <input type="text" class="nickname uk-width-1-3" placeholder="输入昵称">
+            </div>
+            <div class="uk-form-row uk-grid">
+                <label class="uk-width-1-3">password</label>
+                <input type="password"  class="password uk-width-1-3" placeholder="请输入密码">
+            </div>
+            <div class="uk-form-row uk-grid">
+                <label class="uk-width-1-3">sex</label>
+                男<input type="radio" class="uk-width-1-10" checked="true" value="0" name="sex">
+                女<input type="radio" class="uk-width-1-10" value="1" name="sex">
+            </div>
+            <div class="uk-form-row uk-grid">
+                <label class="uk-width-1-3">country</label>
+                <input type="text" class="country uk-width-1-3" placeholder="国家">
+            </div>
+            <button class="uk-button" type="button" style="margin: 20px">sign up</button>
+            <a href="/">cancle</a>
+
+        </fieldset>
+        </form>
+
+    </div>
+
+</div>
+<%- include footer %>
+<script type="text/javascript">
+    $('button[type=button]').unbind('click').bind('click',function () {
+        var postData={}
+        postData.mobile=$('.mobile').val();
+        postData.password=$('.password').val();
+        postData.nickname=$('.nickname').val();
+        postData.sex=$('input[name=sex]').val();
+        postData.country=$('.country').val();
+        $.ajax({
+            url:'/users/register',
+            dataType: 'json',
+            timeout: 60000,
+            type:'POST',
+            data:postData
+        }).done(function(json){
+           console.log(json)
+            if(json.errorCode!=0){
+               alert(json.errorReason)
+            }else{
+                window.location.href='/'
+            }
+        }).fail(function(err){
+            console.log(err)
+        })
+    })
+</script>

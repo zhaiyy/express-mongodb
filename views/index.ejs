@@ -1,0 +1,62 @@
+<style rel="stylesheet">
+    .content{
+        text-align: center;
+        padding: 100px 0px;
+    }
+</style>
+<%- include header %>
+<nav class="">
+    <a href="/">
+        <img class="logo-nav" src="/images/logo.png" >
+    </a>
+</nav>
+<div class="content">
+    <div class="uk-grid">
+        <div class="uk-width-1-1">
+            <h1 style="margin-bottom:40px ">login</h1>
+        </div>
+        <form class="uk-form uk-width-1-1" style="margin: 0 auto">
+        <fieldset>
+            <div class="uk-form-row">
+                user name
+                <input type="text" class="mobile" placeholder="输入手机号">
+            </div>
+            <div class="uk-form-row">
+                password
+                <input type="password"  class="password" placeholder="请输入密码">
+
+            </div>
+            <button class="uk-button" type="button" style="margin: 20px">login</button>
+            <a href="users">sign up</a>
+
+        </fieldset>
+        </form>
+
+    </div>
+
+</div>
+<%- include footer %>
+<script type="text/javascript">
+    $('button[type=button]').unbind('click').bind('click',function () {
+        var postData={}
+        postData.mobile=$('.mobile').val();
+        postData.password=$('.password').val()
+        $.ajax({
+            url:'/login',
+            dataType: 'json',
+            timeout: 60000,
+            type:'POST',
+            data:postData
+        }).done(function(json){
+           console.log(json)
+            if(json.errorCode!=0){
+               alert(json.errorReason)
+            }else{
+                $.cookie('name',json.returnValue.nickname)
+                window.location.href='/welcome';
+            }
+        }).fail(function(err){
+            console.log(err)
+        })
+    })
+</script>

@@ -1,0 +1,26 @@
+<nav class="logo.svg">
+    <a href="/welcome" >
+        <img class="logo-nav" src="/images/logo.png" >
+    </a>
+
+    <a class="logout" style="float: right;line-height: 70px;margin-left: 20px;color: #ff510d">logout</a>
+
+    <span class="" style="color: #ffffff;float: right;line-height: 70px">
+            welcome
+             <span class="name"></span>
+        </span>
+
+</nav>
+<script type="text/javascript">
+    if($.cookie('name')){
+        $('.name').html($.cookie('name'))
+    }else {
+        window.location.href='/'
+    }
+    $('.logout').unbind('click').bind('click',function () {
+        $.removeCookie('name');
+        window.location.href='/'
+
+    })
+
+</script>

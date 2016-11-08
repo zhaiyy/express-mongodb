@@ -1,0 +1,22 @@
+<style rel="stylesheet">
+    .content{
+        text-align: center;
+        padding: 100px 0px;
+    }
+</style>
+<%- include header %>
+<%- include nav %>
+<div class="content">
+   <h1 style="color: #ff510d">WELCOME</h1>
+   <h1 class="name"></h1>
+
+</div>
+<%- include footer %>
+<script type="text/javascript">
+   if($.cookie('name')){
+      $('.name').html($.cookie('name'))
+   }else {
+      window.location.href='/'
+   }
+
+</script>
